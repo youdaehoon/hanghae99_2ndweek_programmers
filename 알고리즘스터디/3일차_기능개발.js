@@ -36,7 +36,7 @@ function solution(progresses, speeds) {
             
             answer.push(temp_c) //카운트 저장하고
             st=arr.shift();  // 자르고,기준으로바꾸고
-            temp_c=1;        // 카운트 초기화 후 진행
+            temp_c=1;        // 카운트 초기화 후 진행gi
             
             
         }
