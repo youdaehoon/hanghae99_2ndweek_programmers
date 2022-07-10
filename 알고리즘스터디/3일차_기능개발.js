@@ -12,7 +12,7 @@
 
 // console.log(array.pop());  // 500
 // console.log(array);  // [ 100, 200, 300, 400 ]
-//8점
+///8점
 function solution(progresses, speeds) {
     var answer = [];
     var len=speeds.length;
