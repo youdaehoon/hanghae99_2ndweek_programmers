@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+
 const MakeCard=(props)=>{
 
     const refCard=React.useRef(null); 
@@ -9,16 +10,37 @@ const MakeCard=(props)=>{
     const refEx=React.useRef(null);
     let evCnt=true; 
     const showEvent=()=>{
+        console.log("idx는",props.idx%3)
         console.log(evCnt)
         if(evCnt){
-        refCard.current.style.width='1400px';
+          
+        refCard.current.style.width='880px';
+        refCard.current.style.height='300px';
+
+        refCard.current.style.zindex="3";
+       if(props.idx%3==1)
+       {refCard.current.style.right="0x";
+       refCard.current.style.bottom="184px";
+    }
+       if(props.idx%3==2){refCard.current.style.bottom="184px";} 
+        
+
+
+        console.log(refCard.current.style)
         refText.current.textContent=props.text;
         refDes.current.textContent=props.des;
         refEx.current.textContent=props.ex;
         evCnt=false;
         }else {
-            refCard.current.style.width="calc((1200px - (10px * 2+20px*2)) / 3)"
+            refCard.current.style.height='150px';
+
+            refCard.current.style.width="calc((900px - ((20px*2) + 50px)) / 3 )"
             refText.current.textContent=props.text;
+            refCard.current.style.posirion="relative";
+            refCard.current.style.right="0";
+            refCard.current.style.bottom="0";
+
+            refCard.current.style.zindex="2";
             refDes.current.textContent=props.des.length>14?props.des.substring(0,15)+`...`:props.des;
             refEx.current.textContent=props.ex.length>14?props.ex.substring(0,15)+`...`:props.ex;
             evCnt=true;
@@ -41,7 +63,8 @@ const MakeCard=(props)=>{
       }, []);
 
     
-    return(
+    return(    
+         <div style={{position:"relative"}}>
                 <Card ref={refCard}>
                     <div>
                     <CardTitle >단어</CardTitle>
@@ -57,6 +80,9 @@ const MakeCard=(props)=>{
                     </div>
                     
                 </Card>
+                <Btn><button>삭제하기!</button></Btn>
+         </div>
+               
     );
 }
 
@@ -70,8 +96,13 @@ const Card=styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 10px;
+    background-color: white;
 
-    width: calc((1200px - (10px * 2+20px*2)) / 3);
+    z-index: 2;
+
+   
+
+    width: calc((900px - ((20px*2) + 50px)) / 3);
 
     position: relative;
     border-radius: 10px;
@@ -84,4 +115,10 @@ const CardTitle=styled.div`
 
 `
 const CardContent=styled.div`
+`
+const Btn=styled.div`
+    position: fixed;
+    bottom : 10%;
+    right : 70px;
+    color: #2A1A46;
 `

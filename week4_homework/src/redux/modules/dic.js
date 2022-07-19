@@ -14,7 +14,7 @@ const initialState = {
     list:[
             
     ]
-    
+        
 };
 
 // 액션 생성 함수예요.
@@ -56,9 +56,6 @@ export const createDicFB=(dic)=>{
 // 실질적으로 store에 들어가 있는 데이터를 변경하는 곳이죠!
 export default function reducer(state = initialState, action = {}) {
 switch (action.type) {
-case "dic/LOAD":
-    console.log('로드했어용!',action.dic)
-    return{ list : action.dic , is_loaded : true};
     
 case "dic/CREATE":
     console.log('먹히냐고')

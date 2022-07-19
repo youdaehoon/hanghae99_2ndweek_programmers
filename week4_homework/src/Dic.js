@@ -45,7 +45,7 @@ const Dic=()=>{
                 <Container>
                 { data.map((v,idx)=>{return(
                    
-                    <MakeCard key={idx} text={v.text} des={v.des} ex={v.ex} />
+                    <MakeCard key={idx} text={v.text} des={v.des} ex={v.ex} idx={idx} />
 
                 )
                     
@@ -68,9 +68,10 @@ export default Dic;
 const Container=styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    /* position: absolute; */
     gap: 20px;
     margin-top: 20px;
+    width: 900px;
     overflow: hidden;
 
 

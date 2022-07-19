@@ -28,9 +28,9 @@ export default App;
 
 
 const Container = styled.div`
-max-width: 70%;
+max-width: 900px;
 min-height: 60vh;
-width:70%;
+width:900px;
 background-color: #fff;
 padding: 16px;
 margin: 20px auto;
