@@ -6,11 +6,16 @@ import { useHistory } from "react-router-dom";
 import { AiFillEdit } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPostFB } from "./redux/modules/post";
+import { getAuth } from "firebase/auth";
 
 
 const Main=(props)=>{
     const history=useHistory();
     const dispatch=useDispatch();
+    //여기부터//
+    const auth=getAuth();
+    const user=auth?.currentUser;
+    //여기//
 
     const data= useSelector((state)=>{
         return state.post
@@ -18,8 +23,12 @@ const Main=(props)=>{
     console.log("main에서찍어보리기!",data)
     const id=data.user.id;
     React.useEffect(()=>{
-        dispatch(loadPostFB());
-    },[]);
+        //여기부터//
+      
+        
+        //여기//
+        dispatch(loadPostFB(user));
+    },[props.is_login]);
     
     return(
         <div>

@@ -16,12 +16,18 @@ const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+ 
+
+  
   const loginFB = async () => {
     if (refId.current.value == "" || refPw.current.value == "") {
-      alert("모두 입력하여 주세요!");
+      alert("모두입력해주세요!!!");
     } else {
+     
       if (emailCheck(refId.current.value)) {
         try {
+
+          
           const user = await signInWithEmailAndPassword(
             auth,
             refId.current.value,
@@ -38,7 +44,7 @@ const Login = () => {
 
           console.log("로그인 성공 후 담기는것:", user.user.email);
 
-          //    history.push("/")
+             history.push("/")
         } catch (error) {
           console.log(error.code);
 
@@ -54,10 +60,10 @@ const Login = () => {
     <Wrap>
       <Title>로그인</Title>
       <Text>아이디</Text>
-      <Input ref={refId}></Input>
-      <Text>비밀번호</Text>
-      <Input ref={refPw}></Input>
-      <Btn onClick={loginFB} ref={refBtn}>
+      <Input ref={refId} ></Input>
+      <Text>비밀번호 </Text>
+      <Input ref={refPw} type='password'></Input>
+      <Btn onClick={loginFB} >
         로그인하기
       </Btn>
     </Wrap>

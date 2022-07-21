@@ -4,9 +4,11 @@ import { useHistory } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { signOut } from "firebase/auth";
 import { auth } from "./shared/firebase";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutId } from "./redux/modules/post";
 
 const Header = (props) => {
+  const dispatch=useDispatch();
   const data = useSelector((state) => {
     return state.post;
   });
@@ -14,6 +16,7 @@ const Header = (props) => {
   const history = useHistory();
   const logoutFB = () => {
     signOut(auth);
+    dispatch(logoutId(null))
   };
 
   return (

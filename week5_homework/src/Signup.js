@@ -12,12 +12,14 @@ import {
   where,
 } from "firebase/firestore";
 import { emailCheck } from "./shared/check";
+import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const refId = React.useRef(null);
   const refNic = React.useRef(null);
   const refPw = React.useRef(null);
   const refPwc = React.useRef(null);
+  const history=useHistory();
 
   const signupFB = async () => {
     console.log(refId.current.value == "");
@@ -41,6 +43,7 @@ const Signup = () => {
               id: refId.current.value,
               nick: refNic.current.value,
             });
+            history.push("/")
           } else {
             alert("비밀번호가 일치하지 않습니다.");
           }
@@ -52,7 +55,7 @@ const Signup = () => {
 
         // console.log(user_data.id);
         // console.log(refPwc.current.value);
-      } else alert("emil 형식이 맞지 않습니다.");
+      } else alert("email 형식이 맞지 않습니다.");
     }
   };
 

@@ -1,39 +1,17 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import Card from './Card'
+import styled from 'styled-components'
+import { useHistory, useLocation } from 'react-router-dom'
 import { AiTwotoneHeart,AiFillDelete} from "react-icons/ai";
 import { BsFillPencilFill } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import {  deletePostFB,updatePostFB } from "./redux/modules/post";
-import { useHistory } from "react-router-dom";
 
-
-const Card=(props)=>{
-    const dispatch=useDispatch();
+const Detail = () => {
+    const location=useLocation();
+    console.log(location.state)
+    const props=location.state;
     const history=useHistory();
-    const data= useSelector((state)=>{
-        return state.post
-    });
-    
-    const idFromLogin=data.user.id;
-    const idFromMake=props.id
-    const deleteCard=()=>{
-        console.log("글만든사람",idFromMake,"현재로그인한사람",idFromLogin)
-        if(idFromLogin==idFromMake){
-            alert("응 너권한있어")
-            dispatch(deletePostFB(props.date));
-        }else{alert("응 너 권한없어~")}
-        
-    }
-    const updateCard=()=>{
-        if(idFromLogin==idFromMake){
-            alert("응 너권한있어")
-            history.push("/Makecard",props)
-        }else{alert("응 너 권한없어~")}
-
-    }
-    
-    return(
-    <div >
+  return (
+    <div>
         <div>
             <HeadCard  >
                 <div style={{display:"flex",flexDirection:"row",gap:"20px"}}>
@@ -45,11 +23,11 @@ const Card=(props)=>{
                 <div>{props.date}</div>
             </HeadCard>
             <WrapIcon>
-                <div onClick={deleteCard}><AiFillDelete/></div>
-                <div onClick={updateCard}><BsFillPencilFill/></div>
+                {/* <div onClick={deleteCard}><AiFillDelete/></div>
+                <div onClick={updateCard}><BsFillPencilFill/></div> */}
             </WrapIcon>
         </div>
-        <div onClick={()=>{history.push('/detail',props)}}>
+        
         <BodyCard type={props.type}>
             <BodyCh type={props.type}><img style={{width:"100%",height:"100%"}} src={props.img}/></BodyCh>
             <BodyCh type={props.type} style={{textAlign:"center"}}>{props.text}</BodyCh>
@@ -60,14 +38,12 @@ const Card=(props)=>{
             </div>
             <div style={{justifyItem:"ritght"}}><AiTwotoneHeart/></div>
         </BotCard>
-        </div>
-        
-        
+        <Btn onClick={()=>{history.push("/")}}>돌아가기</Btn>
     </div>
-    );
-};
+  )
+}
 
-export default Card;
+export default Detail
 
 
 const HeadCard=styled.div`
@@ -114,4 +90,13 @@ const BotCard=styled.div`
     justify-content: space-between;
     margin-bottom: 40px;
     margin-top: 10px;
+`
+const Btn=styled.button`
+    height: 40px;
+    width: 100%;
+    border: none;
+    background-color: #1b9cfc8c;
+    border-radius: 3px;
+    color: white;
+    
 `
